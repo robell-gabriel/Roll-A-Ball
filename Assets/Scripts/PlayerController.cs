@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
 
     public float speed;
+    public float jumpspeed;
     public Text countText;
     public Text winText;
 
@@ -28,7 +29,11 @@ public class PlayerController : MonoBehaviour {
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
         rb.AddForce(movement * speed);
-	}
+        if (Input.GetKeyDown("space"))
+            {
+            rb.AddForce(new Vector3(0, jumpspeed, 0));
+        }
+    }
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Pick Up"))
